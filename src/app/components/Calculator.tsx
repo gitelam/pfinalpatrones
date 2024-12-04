@@ -59,8 +59,9 @@ const Calculator: React.FC = () => {
             // Actualizar el historial desde el Singleton
             const updatedHistory = HistoryManager.getInstance().getHistory();
             setHistory(updatedHistory);
-        } catch (error: any) {
-            alert(error.message);
+            //@typescript-eslint/no-explicit-any
+        } catch (error) {
+            console.error(error);
         }
     };
 
