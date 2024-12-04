@@ -65,51 +65,74 @@ const Calculator: React.FC = () => {
     };
 
     return (
-        <div style={{ padding: "20px", maxWidth: "400px", margin: "0 auto" }}>
-            <h1>Calculator</h1>
-            <div style={{ marginBottom: "10px" }}>
-                <label>
-                    A: <input type="number" value={a} onChange={(e) => setA(Number(e.target.value))} />
-                </label>
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <label>
-                    B: <input type="number" value={b} onChange={(e) => setB(Number(e.target.value))} />
-                </label>
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <label>
-                    Operation:
-                    <select value={operation} onChange={(e) => setOperation(e.target.value)}>
-                        <option value="add">Add</option>
-                        <option value="subtract">Subtract</option>
-                        <option value="divide">Divide</option>
-                    </select>
-                </label>
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <label>
-                    Mode:
-                    <select value={mode} onChange={(e) => setMode(e.target.value)}>
-                        <option value="standard">Standard</option>
-                        <option value="rounded">Rounded</option>
-                        <option value="absolute">Absolute</option>
-                    </select>
-                </label>
-            </div>
-            <button onClick={calculate}>Calculate</button>
-            <div style={{ marginTop: "20px" }}>
-                <h2>Result: {result !== null ? result : "No calculation yet"}</h2>
-            </div>
-            <div style={{ marginTop: "20px" }}>
-                <h3>History:</h3>
-                <ul>
-                    {history.map((record, index) => (
-                        <li key={index}>{record}</li>
-                    ))}
-                </ul>
-            </div>
+        <div className="h-screen bg-gray-900 text-white flex flex-col md:flex-row">
+        <div className="flex-1 p-8 flex flex-col justify-center bg-gray-800 rounded-l-lg shadow-lg">
+          <h1 className="text-4xl font-bold text-center text-indigo-500 mb-8 animate-pulse">Calculator</h1>
+          <div className="mb-6">
+            <label className="block text-lg mb-2">A:</label>
+            <input
+              type="number"
+              value={a}
+              onChange={(e) => setA(Number(e.target.value))}
+              className="w-full p-3 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-lg mb-2">B:</label>
+            <input
+              type="number"
+              value={b}
+              onChange={(e) => setB(Number(e.target.value))}
+              className="w-full p-3 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-lg mb-2">Operation:</label>
+            <select
+              value={operation}
+              onChange={(e) => setOperation(e.target.value)}
+              className="w-full p-3 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="add">Add</option>
+              <option value="subtract">Subtract</option>
+              <option value="divide">Divide</option>
+            </select>
+          </div>
+          <div className="mb-8">
+            <label className="block text-lg mb-2">Mode:</label>
+            <select
+              value={mode}
+              onChange={(e) => setMode(e.target.value)}
+              className="w-full p-3 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="standard">Standard</option>
+              <option value="rounded">Rounded</option>
+              <option value="absolute">Absolute</option>
+            </select>
+          </div>
+          <button
+            onClick={calculate}
+            className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md shadow-md transition-all duration-200 transform hover:scale-105"
+          >
+            Calculate
+          </button>
+          <div className="mt-8">
+            <h2 className="text-xl text-center text-indigo-300">
+              Result: {result !== null ? result : "No calculation yet"}
+            </h2>
+          </div>
         </div>
+      
+        <div className="flex-1 p-8 bg-gray-800 rounded-r-lg shadow-lg">
+          <h3 className="text-2xl font-semibold text-indigo-400 mb-6">History</h3>
+          <ul className="space-y-3">
+            {history.map((record, index) => (
+              <li key={index} className="text-gray-300">{record}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      
     );
 };
 
